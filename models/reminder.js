@@ -1,7 +1,8 @@
 const Joi = require('@hapi/joi');
 const mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-const reminderSchema = new mongoose.Schema({
+const reminderSchema = new Schema({
     title: {
         type: String,
         required: true,
@@ -22,14 +23,12 @@ const reminderSchema = new mongoose.Schema({
         trim: true
     },
     user: {
-        type: String,
-        required: true,
-        minLength: 6,
-        maxLength: 255
+        type: Schema.Types.ObjectId,
+        ref: 'user'
     },
 });
 
-const Reminder = mongoose.model('Users', reminderSchema);
+const Reminder = mongoose.model('Reminders', reminderSchema);
 
 function validateReminder(reminder) {
     const schema = Joi.object({
