@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title><%= page.title %> - RemindMe</title>
+  <link rel="shortcut icon" href="img/logonotext.png" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<% if(message != undefined) {%>
+
+<body onload="toastr.info('<%= message %>');">
+  <% } else { %>
+
+  <body>
+    <% } %>
+
+    <!-- Sidenav -->
+    <!-- Sidenav -->
+
+    <%- (page.content === 'reminders') ? include(navigation) : "" %>
+
+    <!-- /Sidenav -->
+    <!-- /Sidenav -->
+
+    <!-- Partial content -->
+    <!-- Partial content -->
+
+
+    <div class="view full-page-intro p-2" style="overflow-y: auto !important; overflow-x: hidden !important;">
+      <%- include(page.content) %>
+    </div>
+
+
+    <!-- /Partial content -->
+    <!-- /Partial content -->
+
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+
+  </body>
+
+</html>

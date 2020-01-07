@@ -5,7 +5,9 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     console.log('Connected to /');
-    res.send('HOME PAGE');
+
+    res.redirect('/login');
 });
+
 
 module.exports = router;
