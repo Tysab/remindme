@@ -1,0 +1,4 @@
+{
+    "jwtPrivateKey": "GoL390JPxPe+spFyjvxrFxR19eL+JAcoc+ry6aZpHS8=",
+    "db": "mongodb+srv://db_ty:TPtuYXMovnG7SKOf@remindme-csnbb.mongodb.net/test?retryWrites=true&w=majority"
+}

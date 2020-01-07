@@ -1,7 +1,5 @@
 //  Root path is /reminders
 
-// const page = require('../json/routes.json').page.profile;
-const settings = page.settings;
 const express = require('express');
 const router = express.Router();
 
