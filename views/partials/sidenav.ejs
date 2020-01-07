@@ -6,10 +6,10 @@
       <li>
         <div class="container-fluid p-0">
 
-          <div id="hey_user" class="d-flex justify-content-center align-items-center p-2">Hey <%= user.first_name %></div>
+          <div id="hey_user" class="d-flex justify-content-center align-items-center p-2">Hello <%= user.first_name %></div>
 
           <div class="d-flex justify-content-center align-items-center p-a-0">
-            <img src=""
+            <img src="" alt="logo"
               class="img-fluid rounded-circle" style="padding-right: 1px; padding-left: 1px;">
           </div>
 
@@ -20,75 +20,32 @@
       <li>
 
         <ul class="collapsible collapsible-accordion">
-
-          <li class="sidenav-list">
-            <a class="collapsible-header waves-effect arrow-r sidenav-item sn-dropdown">
-              <i class="fas fa-user-circle sn-icon-size"></i>Over Mij <i class="fas fa-angle-down rotate-icon"></i>
-            </a>
-
-            <div class="collapsible-body">
-
-              <ul>
-
-                <li>
-                  <a href="/profile" class="waves-effect active sidenav-item sn-collapse">
-                    <span class="sv-slim"><i class="sv-slim-icon fas fa-user sn-icon-size-child"></i> </span>
-                    <span class="sv-normal"><i class="sv-slim-icon fas fa-user sn-icon-size-child"></i>Mijn
-                      Profiel</span>
-                  </a>
-                </li>
-
-                <li><a href="/follow" class="waves-effect sidenav-item sn-collapse">
-                    <span class="sv-slim"><i class="sv-slim-icon fas fa-users sn-icon-size-child"></i> </span>
-                    <span class="sv-normal"><i class="sv-slim-icon fas fa-users sn-icon-size-child"></i>Volglijst</span>
-                  </a>
-                </li>
-
-              </ul>
-            </div>
-          </li>
-
+<!-- 
           <li class="sidenav-list">
 
-            <a href="/timeline" class="waves-effect sidenav-item">
-              <i class="sv-slim-icon fas fa-eye fa-stream"></i>Tijdlijn
+            <a href="/=" class="waves-effect sidenav-item">
+              <i class="sv-slim-icon fas fa-users sn-icon-size"></i>Text
             </a>
 
-          </li>
-
-          <li class="sidenav-list">
-
-            <a href="/upload" class="waves-effect sidenav-item">
-              <i class="sv-slim-icon fas fa-upload sn-icon-size"></i>Uploaden
-            </a>
-
-          </li>
-
-          <li class="sidenav-list">
-
-            <a href="/search" class="waves-effect sidenav-item">
-              <i class="sv-slim-icon fas fa-users sn-icon-size"></i>Gebruikers
-            </a>
-
-          </li>
+          </li> -->
 
           <li class="sidenav-list">
             <a id="toggle" class="waves-effect sidenav-item sn-hide-menu">
-              <i class="sv-slim-icon fas fa-angle-double-left sn-icon-size"></i>Verbergen
+              <i class="sv-slim-icon fas fa-angle-double-left sn-icon-size"></i>Hide Menu
             </a>
           </li>
 
           <div class="fixed-bottom">
 
             <li class="sidenav-list">
-              <a href="/profile/settings" class="waves-effect sidenav-item sn-bottom">
-                <i class="fas fa-cog sn-icon-size"></i>Instellingen
+              <a href="/settings" class="waves-effect sidenav-item sn-bottom">
+                <i class="fas fa-cog sn-icon-size"></i>Settings
               </a>
             </li>
 
             <li class="sidenav-list">
               <a href="/logout" class="waves-effect sidenav-item sn-bottom">
-                <i class="fas fa-sign-out-alt sn-icon-size" style="color:#A91010"></i>Uitloggen
+                <i class="fas fa-sign-out-alt sn-icon-size" style="color:#A91010"></i>Log out
               </a>
             </li>
 
