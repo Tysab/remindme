@@ -16,10 +16,25 @@ let passed_query;
 
 module.exports = {
 
-    // Registers new user
-    create: async function (req, res) {
+    //  Shows all reminders
+    list: async function (req, res, next) {
 
-        console.log(req.body);
+        let reminder = await Reminder.find({
+                user: res.locals.user.userId
+            })
+            .select()
+            .populate('user', 'email')
+            .exec((err, doc) => {
+                let result = (err) ? err : (!doc.length) ? "No reminders found" : doc;
+                res.locals.reminders = result;
+                console.log(result);
+                next();
+            });
+
+    },
+
+    // Sets new reminder
+    create: async function (req, res) {
 
         const {
             error
@@ -41,7 +56,7 @@ module.exports = {
                 message: req.body.message,
                 date: req.body.date,
                 time: req.body.time,
-                user: req.userData._id
+                user: req.userData.userId
             }, (err, doc) => {
                 let result = (err) ? err : doc;
                 console.log(result);

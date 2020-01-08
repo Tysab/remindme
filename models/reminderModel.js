@@ -13,7 +13,7 @@ const reminderSchema = new Schema({
 		type: String,
 		required: true,
 		minLength: 2,
-		maxLength: 30
+		maxLength: 75
 	},
 	message: {
 		type: String,
@@ -36,7 +36,8 @@ const reminderSchema = new Schema({
 	},
 	user: {
 		type: Schema.Types.ObjectId,
-		ref: 'user'
+		ref: 'user',
+		required: true
 	},
 });
 
@@ -46,7 +47,7 @@ const reminderModel = mongoose.model('reminder', reminderSchema);
 function validateInput(input) {
 
 	let schema = Joi.object({
-		title: Joi.string().min(2).max(30).required(),
+		title: Joi.string().min(2).max(75).required(),
 		message: Joi.string().min(2).required(),
 		date: Joi.date().required(),
 		time: Joi.string().required()

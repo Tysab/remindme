@@ -10,7 +10,6 @@ router.use((req, res, next) => {
             content: "register",
             title: "Register"
     }
-
     next();
 });
 

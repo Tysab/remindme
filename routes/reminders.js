@@ -1,7 +1,8 @@
 //  Root path is /reminders
 
 const {
-    create
+    create,
+    list
 } = require('../controllers/reminderController');
 const express = require('express');
 const auth = require('../middleware/auth');
@@ -13,21 +14,16 @@ router.use((req, res, next) => {
             content: "reminders",
             title: "Reminders"
     }
-
     next();
 });
 
-router.get('/', auth, async (req, res) => {
+router.get('/', auth, list, async (req, res) => {
     console.log('Connected to /reminders');
 
     res.render('index');
 });
 
-router.post('/', auth, create, async (req, res) => {
-    console.log('Connected to /reminders [POST]');
-
-    res.render('index');
-});
+router.post('/', auth, create);
 
 
 module.exports = router;

@@ -17,7 +17,6 @@ router.use((req, res, next) => {
             content: "login",
             title: "Login"
     }
-
     next();
 });
 
