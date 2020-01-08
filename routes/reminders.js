@@ -23,7 +23,7 @@ router.get('/', auth, list, async (req, res) => {
     res.render('index');
 });
 
-router.post('/', auth, create);
+router.post('/', auth, list, create);
 
 
 module.exports = router;

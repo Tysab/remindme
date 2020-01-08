@@ -8,6 +8,30 @@ const Schema = mongoose.Schema;
 // NEW REFERENCE/ID
 //	_id: new mongoose.Types.ObjectId(),
 
+/*
+validate: [{
+			isAsync: true,
+			validator: function (v) {
+				let date = new Date(`${this.date} ${this.time}`);
+				if (date == "Invalid date") {
+					return;
+				}
+			},
+			message: "Date is not valid"
+		}, {
+			isAsync: true,
+			validator: function (v) {
+				let date = new Date(`${this.date} ${this.time}`);
+				if (date < new Date().now()) {
+					return;
+				}
+			},
+			message: "The reminder date can't be set for the past"
+		}],
+
+
+*/
+
 const reminderSchema = new Schema({
 	title: {
 		type: String,
@@ -22,6 +46,19 @@ const reminderSchema = new Schema({
 	},
 	date: {
 		type: String,
+		validate: [{
+			isAsync: true,
+			validator: function (v) {
+				return new Date(v) != "Invalid Date";
+			},
+			message: "Date is not valid"
+		}, {
+			isAsync: true,
+			validator: function (v) {
+				return new Date(v) > Date.now();
+			},
+			message: "The reminder date can't be set for the past"
+		}],
 		required: true
 	},
 	time: {
@@ -30,7 +67,7 @@ const reminderSchema = new Schema({
 	},
 	remind_date: {
 		type: String,
-		default: function() {
+		default: function () {
 			return new Date(`${this.date} ${this.time}`);
 		}
 	},

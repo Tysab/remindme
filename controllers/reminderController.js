@@ -58,16 +58,19 @@ module.exports = {
                 user: req.userData.userId
             }, (err, doc) => {
                 let result = (err) ? err : doc;
-                console.log(result);
+                //console.log(result);
             });
 
 
             //  ! Catch duplicate errors
-            await reminder.save(function (err, user) {
+            await reminder.save(async function (err, user) {
+                //  This error message isn't loading because the res is re-rendering without invoking the toast function again.
                 if (err) {
+                    let errmsg = err.errors.date.message;
+                    console.log(errmsg);
+
                     return res.render('index', {
-                        message: 'Error when creating reminder',
-                        error: err
+                        message: errmsg
                     });
                 }
                 return res.render('index', {
@@ -76,7 +79,7 @@ module.exports = {
             });
 
         } catch (ex) {
-            console.log(ex);
+            //console.log(ex);
             return res.render('index', {
                 message: ex
             });
