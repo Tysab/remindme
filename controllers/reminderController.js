@@ -27,7 +27,6 @@ module.exports = {
             .exec((err, doc) => {
                 let result = (err) ? err : (!doc.length) ? "No reminders found" : doc;
                 res.locals.reminders = result;
-                console.log(result);
                 next();
             });
 

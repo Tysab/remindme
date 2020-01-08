@@ -1,167 +1,104 @@
 <!-- Start your project here-->
-<div class="container cloudy-knoxville-gradient text-center">
-    <p class="h4 mb-4">Hello <%= user.first_name %>,
-      <br> Please tell us what you want to be reminded of.
+<div class="container cloudy-knoxville-gradient text-center p-5">
+  <p class="h4">Hello <%= user.first_name %>,
+    <br> Please tell us what you want to be reminded of.</p>
 
-        <!-- Reminder  -->
-      <form action="/reminders" method="POST">
-        <hr class="black">
-        <!-- Grid row -->
-        <div class="form-group row">
-          <!-- Material input -->
-          <label for="inputEmail3MD" class="col-sm-2 col-form-label">Title</label>
-          <div class="col-sm-8">
-            <div class="md-form mt-0">
-              <input type="text" class="form-control" id="inputEmail3MD" name="title" placeholder="Pick a title for your E-Mail reminder..">
-            </div>
+  <hr class="black my-5">
+
+  <!-- Reminder  -->
+  <form action="/reminders" method="POST">
+    <!-- Grid row -->
+    <div class="form-group row">
+      <!-- Material input -->
+      <label for="inputEmail3MD" class="col-sm-2 col-form-label">Title</label>
+      <div class="col-sm-8">
+        <div class="md-form mt-0">
+          <input type="text" class="form-control" id="inputEmail3MD" name="title"
+            placeholder="Pick a title for your E-Mail reminder..">
+        </div>
+      </div>
+    </div>
+    <!-- Grid row -->
+    <!-- Grid row -->
+    <div class="form-group row">
+      <!-- Material input -->
+      <label for="inputPassword3MD" class="col-sm-2 col-form-label">Message</label>
+      <div class="col-sm-8">
+        <div class="md-form mt-0">
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1"></label>
+            <textarea class="form-control rounded-0 p-0" id="exampleFormControlTextarea1" name="message"
+              placeholder="Perhaps you should leave a message as well.." rows="4"></textarea>
           </div>
         </div>
-        <!-- Grid row -->
-        <!-- Grid row -->
-        <div class="form-group row">
-          <!-- Material input -->
-          <label for="inputPassword3MD" class="col-sm-2 col-form-label">Message</label>
-          <div class="col-sm-8">
-            <div class="md-form mt-0">
-              <div class="form-group">
-                <label for="exampleFormControlTextarea1"></label>
-                <textarea class="form-control rounded-0 p-0" id="exampleFormControlTextarea1" name="message" placeholder="Perhaps you should leave a message as well.." rows="4"></textarea>
-              </div>
-            </div>
-          </div>
+      </div>
+    </div>
+    <!-- Grid row -->
+    <div class="form-group row">
+      <!-- Material input -->
+      <label for="inputEmail3MD" class="col-sm-2 col-form-label">Date</label>
+      <div class="col-sm-8">
+        <div class="md-form mt-0">
+          <input type="text" placeholder="Pick a date..." id="date-picker-example" name="date"
+            class="form-control datepicker">
         </div>
-        <!-- Grid row -->
-        <div class="form-group row">
-          <!-- Material input -->
-          <label for="inputEmail3MD" class="col-sm-2 col-form-label">Date</label>
-          <div class="col-sm-8">
-            <div class="md-form mt-0">
-              <input type="text" placeholder="Pick a date..." id="date-picker-example" name="date" class="form-control datepicker">
-            </div>
-          </div>
+      </div>
+    </div>
+    <!-- Grid row -->
+    <!-- Grid row -->
+    <div class="form-group row">
+      <!-- Material input -->
+      <label for="inputEmail3MD" class="col-sm-2 col-form-label">Time</label>
+      <div class="col-sm-8">
+        <div class="md-form mt-0">
+          <input type="text" id="input_starttime" placeholder="Pick a time.." name="time"
+            class="form-control timepicker">
+          <label for="input_starttime"></label>
         </div>
-        <!-- Grid row -->
-        <!-- Grid row -->
-        <div class="form-group row">
-          <!-- Material input -->
-          <label for="inputEmail3MD" class="col-sm-2 col-form-label">Time</label>
-          <div class="col-sm-8">
-            <div class="md-form mt-0">
-              <input type="text" id="input_starttime" placeholder="Pick a time.." name="time" class="form-control timepicker">
-              <label for="input_starttime"></label>
-            </div>
-          </div>
-          <button class="btn btn-default btn-lg btn-block" type="submit">Set reminder</button>
+      </div>
+      <button class="btn btn-default btn-lg btn-block" type="submit">Set reminder</button>
+    </div>
+    <hr class="black">
+    <!-- Grid row -->
+
+  </form>
+  <!-- /Reminder form -->
+
+  <!-- Reminder divs -->
+
+  <% console.log(reminders) %>
+  <% if(reminders.length > 0) { %>
+  <% for(let x = 0; x < reminders.length; x++) { %>
+
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-center align-items-center border border-dark">
+      <div class="col d-flex col-md-6 mx-auto justify-content-center justify-content-md-start">
+        <div class="d-flex">
+          <span
+            class="font-weight-normal"><%= (reminders[x].title.length > 30) ? reminders[x].title.substring(0, 30) + "..." : reminders[x].title + "..." %></span>
+          <pre class="font-weight-bolder"> | </pre>
+          <span class="font-weight-light"> <%= reminders[x].date + ' ' + reminders[x].time %> </span>
         </div>
-        <hr class="black">
-        <!-- Grid row -->
+      </div>
 
-        </form>
-        <!-- /Reminder form -->
+      <div class="col d-flex col-md-6 justify-content-end">
 
-        <!-- Reminder div -->
-        
-        <div class="container-fluid">
-          <div class="row d-flex justify-content-center align-items-center border border-dark">
-            <div class="col d-flex col-md-6 mx-auto justify-content-center justify-content-md-start">
-              <div class="d-flex mx-auto">
-                <span>Title | Date</span>
-              </div>
-            </div>
-            <div class="col d-flex col-md-6 mx-auto justify-content-center justify-content-md-start">
-              <div class="d-flex m-1">
-                <button class="btn btn-primary btn-md font-smaller" onclick="">View</button>
-                <button class="btn btn-primary btn-md font-smaller" onclick="">Edit</button>
-                <button class="btn btn-primary btn-md font-smaller" onclick="">Cancel</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- /Reminder div -->
+        <button class="btn btn-primary btn-md font-smaller" onclick="">View</button>
+        <button class="btn btn-primary btn-md font-smaller" onclick="">Edit</button>
+        <button class="btn btn-primary btn-md font-smaller" onclick="">Cancel</button>
 
-        <!-- Reminder div -->
-        
-        <div class="container-fluid">
-          <div class="row d-flex justify-content-center align-items-center border border-dark">
-            <div class="col d-flex col-md-6 mx-auto justify-content-center justify-content-md-start">
-              <div class="d-flex mx-auto">
-                <span>Title | Date</span>
-              </div>
-            </div>
-            <div class="col d-flex col-md-6 mx-auto justify-content-center justify-content-md-start">
-              <div class="d-flex m-1">
-                <button class="btn btn-primary btn-md font-smaller" onclick="">View</button>
-                <button class="btn btn-primary btn-md font-smaller" onclick="">Edit</button>
-                <button class="btn btn-primary btn-md font-smaller" onclick="">Cancel</button>
-              </div>
-            </div>
-          </div>
-        </div>
+      </div>
 
-        <!-- /Reminder div -->
+    </div>
+  </div>
 
-        <!-- Reminder div -->
-        
-        <div class="container-fluid">
-          <div class="row d-flex justify-content-center align-items-center border border-dark">
-            <div class="col d-flex col-md-6 mx-auto justify-content-center justify-content-md-start">
-              <div class="d-flex mx-auto">
-                <span>Title | Date</span>
-              </div>
-            </div>
-            <div class="col d-flex col-md-6 mx-auto justify-content-center justify-content-md-start">
-              <div class="d-flex m-1">
-                <button class="btn btn-primary btn-md font-smaller" onclick="">View</button>
-                <button class="btn btn-primary btn-md font-smaller" onclick="">Edit</button>
-                <button class="btn btn-primary btn-md font-smaller" onclick="">Cancel</button>
-              </div>
-            </div>
-          </div>
-        </div>
+  <% } %>
+  <% } else { %>
 
-        <!-- /Reminder div -->
+  <p class="h4 py-4"><%= reminders %></p>
 
-        <!-- Reminder div -->
-        
-        <div class="container-fluid">
-          <div class="row d-flex justify-content-center align-items-center border border-dark">
-            <div class="col d-flex col-md-6 mx-auto justify-content-center justify-content-md-start">
-              <div class="d-flex mx-auto">
-                <span>Title | Date</span>
-              </div>
-            </div>
-            <div class="col d-flex col-md-6 mx-auto justify-content-center justify-content-md-start">
-              <div class="d-flex m-1">
-                <button class="btn btn-primary btn-md font-smaller" onclick="">View</button>
-                <button class="btn btn-primary btn-md font-smaller" onclick="">Edit</button>
-                <button class="btn btn-primary btn-md font-smaller" onclick="">Cancel</button>
-              </div>
-            </div>
-          </div>
-        </div>
+  <% } %>
 
-        <!-- /Reminder div -->
-
-        <!-- Reminder div -->
-        
-        <div class="container-fluid">
-          <div class="row d-flex justify-content-center align-items-center border border-dark">
-            <div class="col d-flex col-md-6 mx-auto justify-content-center justify-content-md-start">
-              <div class="d-flex mx-auto">
-                <span>Title | Date</span>
-              </div>
-            </div>
-            <div class="col d-flex col-md-6 mx-auto justify-content-center justify-content-md-start">
-              <div class="d-flex m-1">
-                <button class="btn btn-primary btn-md font-smaller" onclick="">View</button>
-                <button class="btn btn-primary btn-md font-smaller" onclick="">Edit</button>
-                <button class="btn btn-primary btn-md font-smaller" onclick="">Cancel</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- /Reminder div -->
+  <!-- /Reminder divs -->
 
 </div>
