@@ -16,7 +16,10 @@ module.exports = async (req, res, next) => {
         //  Verifies JSONWebToken
         const decoded = jwt.verify(token, jwtPrivateKey);
         //  Passes User data
+        //  ! Double declaration
         req.userData = decoded;
+        res.locals.user = req.userData;
+
         next();
     } catch (ex) {
         //  Redirects to /login if token is not verified

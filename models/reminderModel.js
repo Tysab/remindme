@@ -20,10 +20,19 @@ const reminderSchema = new Schema({
 		required: true,
 		minLength: 1,
 	},
+	date: {
+		type: String,
+		required: true
+	},
+	time: {
+		type: String,
+		required: true
+	},
 	remind_date: {
-		type: Date,
-		required: true,
-		trim: true
+		type: String,
+		default: function() {
+			return new Date(`${this.date} ${this.time}`);
+		}
 	},
 	user: {
 		type: Schema.Types.ObjectId,
@@ -34,37 +43,19 @@ const reminderSchema = new Schema({
 const reminderModel = mongoose.model('reminder', reminderSchema);
 
 
-function validateInput(validation_type, input) {
+function validateInput(input) {
 
-	let schema;
+	let schema = Joi.object({
+		title: Joi.string().min(2).max(30).required(),
+		message: Joi.string().min(2).required(),
+		date: Joi.date().required(),
+		time: Joi.string().required()
+	});
 
-	switch (validation_type) {
-
-
-		schema = Joi.object({
-			title: Joi.string().min(2).max(30).required(),
-			message: Joi.string().min(2).required(),
-			remind_date: Joi.date().required()
-		});
-
-		//	Create
-		//	Update
-		//	Delete
-		case '':
-		break;
-
-	
-		return schema.validate(input, (error, value) => {});
-
-		default:
-			console.log('ERROR: validation request type not valid');
-			return "ERROR: validation request type not valid";
-			break;
-
-	}
+	return schema.validate(input, (error, value) => {});
 
 
 }
 
-module.exports.User = reminderModel;
+module.exports.Reminder = reminderModel;
 module.exports.validateInput = validateInput;

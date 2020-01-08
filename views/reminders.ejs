@@ -1,9 +1,10 @@
 <!-- Start your project here-->
-<div class="container cloudy-knoxville-gradient">
-  <form class="text-center p-5" action="#!">
+<div class="container cloudy-knoxville-gradient text-center">
     <p class="h4 mb-4">Hello <%= user.first_name %>,
       <br> Please tell us what you want to be reminded of.
-      <form>
+
+        <!-- Reminder  -->
+      <form action="/reminders" method="POST">
         <hr class="black">
         <!-- Grid row -->
         <div class="form-group row">
@@ -11,7 +12,7 @@
           <label for="inputEmail3MD" class="col-sm-2 col-form-label">Title</label>
           <div class="col-sm-8">
             <div class="md-form mt-0">
-              <input type="email" class="form-control" id="inputEmail3MD" placeholder="">
+              <input type="text" class="form-control" id="inputEmail3MD" name="title" placeholder="Pick a title for your E-Mail reminder..">
             </div>
           </div>
         </div>
@@ -24,7 +25,7 @@
             <div class="md-form mt-0">
               <div class="form-group">
                 <label for="exampleFormControlTextarea1"></label>
-                <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="4"></textarea>
+                <textarea class="form-control rounded-0 p-0" id="exampleFormControlTextarea1" name="message" placeholder="Perhaps you should leave a message as well.." rows="4"></textarea>
               </div>
             </div>
           </div>
@@ -35,8 +36,7 @@
           <label for="inputEmail3MD" class="col-sm-2 col-form-label">Date</label>
           <div class="col-sm-8">
             <div class="md-form mt-0">
-              <input placeholder="" type="text" id="date-picker-example" class="form-control datepicker">
-              <label for="date-picker-example">Pick a date...</label>
+              <input type="text" placeholder="Pick a date..." id="date-picker-example" name="date" class="form-control datepicker">
             </div>
           </div>
         </div>
@@ -47,14 +47,17 @@
           <label for="inputEmail3MD" class="col-sm-2 col-form-label">Time</label>
           <div class="col-sm-8">
             <div class="md-form mt-0">
-              <input placeholder="Selected time" type="text" id="input_starttime" class="form-control timepicker">
+              <input type="text" id="input_starttime" placeholder="Pick a time.." name="time" class="form-control timepicker">
               <label for="input_starttime"></label>
             </div>
           </div>
-          <button type="button" class="btn btn-default btn-lg btn-block">Set reminder</button>
+          <button class="btn btn-default btn-lg btn-block" type="submit">Set reminder</button>
         </div>
         <hr class="black">
         <!-- Grid row -->
+
+        </form>
+        <!-- /Reminder form -->
 
         <!-- Reminder div -->
         

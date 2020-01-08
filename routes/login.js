@@ -38,7 +38,7 @@ router.post('/', async (req, res, next) => {
         console.log('User input-validation pass');
     } else if (error) {
         //console.log(error);
-        return res.status(400).render("login", {
+        return res.status(400).render("index", {
             message: error.details[0].message
         });
     }
@@ -49,7 +49,7 @@ router.post('/', async (req, res, next) => {
         .exec()
         .then(user => {
             if (user.length < 1) {
-                return res.status(400).render("login", {
+                return res.status(400).render("index", {
                     message: "E-mail or password incorrect"
                 });
             };
@@ -57,7 +57,7 @@ router.post('/', async (req, res, next) => {
 
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
 
-                if (err) return res.status(400).render("login", {
+                if (err) return res.status(400).render("index", {
                     message: "E-mail or password incorrect"
                 });
 
@@ -93,7 +93,7 @@ router.post('/', async (req, res, next) => {
                 // });
 
 
-                res.status(400).render("login", {
+                res.status(400).render("index", {
                     message: "E-mail or password incorrect"
                 });
 

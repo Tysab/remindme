@@ -23,16 +23,13 @@ $(document).ready(function () {
     // SideNav Scrollbar Initialization
     var sideNavScrollbar = document.querySelector('.custom-scrollbar');
     Ps.initialize(sideNavScrollbar);
-    
+
+
 });
 
-//biografie_textarea
-//character_count
-
-//  Character count for "Biografie" in "/profile/settings"
-function characterCount(val){
-    let current_length = val.value.length;
-    let maxLength = $(val).attr("maxlength");
-    let par_text = `${current_length}/${maxLength}`;
-    $("#character_count").text(par_text);
-}
+$('.datepicker').pickadate({
+    weekdaysShort: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+    showMonthsShort: true
+})
+// Time Picker Initialization
+$('#input_starttime').pickatime({});

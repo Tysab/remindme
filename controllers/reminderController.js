@@ -1,7 +1,7 @@
 const {
-    User,
+    Reminder,
     validateInput
-} = require('../models/userModel.js');
+} = require('../models/reminderModel');
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 
@@ -19,9 +19,11 @@ module.exports = {
     // Registers new user
     create: async function (req, res) {
 
+        console.log(req.body);
+
         const {
             error
-        } = validateInput("register", req.body);
+        } = validateInput(req.body);
 
         if (!error) {
             console.log('User input-validation pass');
@@ -31,29 +33,40 @@ module.exports = {
                 message: error.details[0].message
             });
         }
-        
-        const salt = await bcrypt.genSalt(10);
-        let user_password = await bcrypt.hash(req.body.password, salt);
 
-        const user = new User({
-            first_name: req.body.first_name,
-            last_name: req.body.last_name,
-            email: req.body.email.toLowerCase(),
-            password: user_password
-        });
+        try {
+
+            const reminder = new Reminder({
+                title: req.body.title,
+                message: req.body.message,
+                date: req.body.date,
+                time: req.body.time,
+                user: req.userData._id
+            }, (err, doc) => {
+                let result = (err) ? err : doc;
+                console.log(result);
+            });
 
 
-        //  ! Catch duplicate errors
-        await user.save(function (err, user) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when creating user',
-                    error: err
+            //  ! Catch duplicate errors
+            await reminder.save(function (err, user) {
+                if (err) {
+                    return res.render('index', {
+                        message: 'Error when creating reminder',
+                        error: err
+                    });
+                }
+                return res.render('index', {
+                    message: "Your reminder is set!"
                 });
-            }
-            res.message = "Your account is created!";
-            return res.redirect('/login');
-        });
+            });
+
+        } catch (ex) {
+            console.log(ex);
+            return res.render('index', {
+                message: ex
+            });
+        }
     },
 
     // Allows user to update their data
