@@ -19,16 +19,19 @@ module.exports = {
     //  Shows all reminders
     list: async function (req, res, next) {
 
+
         let reminder = await Reminder.find({
                 user: res.locals.user.userId
             })
             .select()
             .populate('user', 'email')
-            .exec((err, doc) => {
+            .exec( async (err, doc) => {
                 let result = (err) ? err : (!doc.length) ? "No reminders found" : doc;
-                res.locals.reminders = result;
+                res.locals.reminders = await result;
                 next();
             });
+
+            
 
     },
 

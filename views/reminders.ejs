@@ -66,8 +66,12 @@
 
   <!-- Reminder divs -->
 
-  <% if(reminders.length > 0) { %>
+
+  <% if(reminders.length > 0 && Array.isArray(reminders)) { %>
   <% for(let x = 0; x < reminders.length; x++) { %>
+
+    <% console.log(reminders); %>
+
 
   <div class="container-fluid">
     <div class="row d-flex justify-content-center align-items-center border border-dark">
