@@ -25,15 +25,34 @@ module.exports = {
             })
             .select()
             .populate('user', 'email')
-            .exec( async (err, doc) => {
+            .exec(async (err, doc) => {
                 let result = (err) ? err : (!doc.length) ? "No reminders found" : doc;
                 res.locals.reminders = await result;
                 next();
             });
 
-            
+
 
     },
+
+    cancel: async function (req, res) {
+
+        try {
+
+            await Reminder.findByIdAndDelete({
+                _id: req.params.id
+            }, (err, doc_res) => {
+                let result = (err) ? err : res;
+                console.log(result);
+                return res.redirect('/reminders');
+            });
+
+        } catch (ex) {
+            console.log(ex);
+        }
+
+    },
+
 
     // Sets new reminder
     create: async function (req, res) {

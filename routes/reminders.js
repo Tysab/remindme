@@ -2,7 +2,8 @@
 
 const {
     create,
-    list
+    list,
+    cancel
 } = require('../controllers/reminderController');
 const express = require('express');
 const auth = require('../middleware/auth');
@@ -23,7 +24,10 @@ router.get('/', auth, list, async (req, res) => {
     res.render('index');
 });
 
+router.post('/cancel/:id', auth, cancel);
+
 router.post('/', auth, list, create);
+
 
 
 module.exports = router;

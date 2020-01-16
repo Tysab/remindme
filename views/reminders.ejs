@@ -70,8 +70,7 @@
   <% if(reminders.length > 0 && Array.isArray(reminders)) { %>
   <% for(let x = 0; x < reminders.length; x++) { %>
 
-    <% console.log(reminders); %>
-
+  <% console.log(reminders); %>
 
   <div class="container-fluid">
     <div class="row d-flex justify-content-center align-items-center border border-dark">
@@ -86,9 +85,12 @@
 
       <div class="col d-flex col-md-6 justify-content-end">
 
-        <button class="btn btn-primary btn-md font-smaller" onclick="">View</button>
-        <button class="btn btn-primary btn-md font-smaller" onclick="">Edit</button>
-        <button class="btn btn-primary btn-md font-smaller" onclick="">Cancel</button>
+        <button class="btn btn-primary btn-md font-smaller" type="submit">View</button>
+        <button class="btn btn-primary btn-md font-smaller" type="submit">Edit</button>
+
+        <form action="/reminders/cancel/<%= reminders[x]._id %>" method="POST">
+          <button class="btn btn-primary btn-md font-smaller" type="submit">Cancel</button>
+        </form>
 
       </div>
 
